@@ -1,5 +1,9 @@
 # HILL CIPHER
 HILL CIPHER
+
+```
+GEERTHIVASH J.D. - 212223060067
+```
 EX. NO: 3 AIM:
  
 
@@ -29,7 +33,57 @@ STEP-4: Multiply the two matrices to obtain the cipher text of length three.
 STEP-5: Combine all these groups to get the complete cipher text.
 
 ## PROGRAM 
-
+```
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#define SIZE 3
+int charToNum(char c) {
+return toupper(c) - 'A';
+}
+char numToChar(int n) {
+return (n % 26) + 'A'; }
+int main() {
+char text[100];
+int key[SIZE][SIZE];
+int len, i, j, k;
+printf("Enter the plain text (only alphabets): ");
+fgets(text, sizeof(text), stdin);
+text[strcspn(text, "\n")] = '\0'; // remove newline
+len = strlen(text);
+while (len % SIZE != 0) {
+text[len++] = 'X';
+text[len] = '\0';
+}
+printf("Enter the 3x3 key matrix (row by row, 9 numbers):\n");
+for (i = 0; i < SIZE; i++) {
+for (j = 0; j < SIZE; j++) {
+scanf("%d", &key[i][j]);
+}
+}
+printf("\nCipher text: ");
+for (i = 0; i < len; i += SIZE) {
+int P[SIZE], C[SIZE
+for (j = 0; j < SIZE; j++) {
+P[j] = charToNum(text[i + j]);
+}
+for (j = 0; j < SIZE; j++) {
+C[j] = 0;
+for (k = 0; k < SIZE; k++) {
+C[j] += key[j][k] * P[k];
+}
+C[j] %= 26; // mod 26
+}
+for (j = 0; j < SIZE; j++) {
+printf("%c", numToChar(C[j]));
+}
+}
+printf("\n");
+return 0;
+}
+```
 ## OUTPUT
+<img width="626" height="262" alt="image" src="https://github.com/user-attachments/assets/4c42a010-a495-4ce8-af12-138c8d355345" />
 
 ## RESULT
+Thus the implementation of hill cipher substitution had been executed successfully
